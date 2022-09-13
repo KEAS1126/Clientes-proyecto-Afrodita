@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ver Detalle Cliente</title>
+</head>
+
+<body>
+    <li>{{mostrar.nombre}}</li>
+    <li>{{mostrar.sexo}}</li>
+    <li>{{mostrar.documento}}</li>
+    <li>{{mostrar.fechaNacimiento}}</li>
+    <li>{{mostrar.telefono}}</li>
+    <li>{{mostrar.direccion}}</li>
+    <li>{{mostrar.correo}}</li>
+    <li>{{mostrar.estadoCivil}}</li>
+    <li>{{mostrar.numeroHijos}}</li>
+
+    <button><a href="/formularioCorporal/{{mostrar.idCliente}}">crearCorporal</a></button>
+    <table>
+        <tr>
+            <th>Fecha creación</th>
+            <th>Esteticista</th>
+            <th>Funciones</th>
+        </tr>
+
+        {% for listar in corporal %}
+        <tr>
+            <td>{{listar.fechaCreacion}}</td>
+            <td>{{listar.nombreE}}</td>
+            <td><button><a href="{% url 'verDetalleCorporal' listar.idCorporal %}">Ver Detalle</a> </button></td>
+        </tr>
+        {% endfor %}
+
+        </tr>
+    </table>
+    <button><a href="/formularioFacial/{{mostrar.idCliente}}">crearFacial</a></button>
+<table>
+        <tr>
+            <th>Fecha creación</th>
+            <th>Esteticista</th>
+            <th>Funciones</th>
+        </tr>
+
+        {% for listar in facial %}
+        <tr>
+            <td>{{listar.fechaCreacion}}</td>
+            <td>{{listar.nombreE}}</td>
+            <td><button><a href="{% url 'verDetalleFacial' listar.idFacial %}">Ver Detalle</a> </button></td>
+        </tr>
+        {% endfor %}
+
+        </tr>
+    </table>
+
+</body>
+
+</html>

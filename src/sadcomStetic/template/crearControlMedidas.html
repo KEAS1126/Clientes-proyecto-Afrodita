@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control medidas</title>
+</head>
+
+<body>
+    <form action="{% url 'crearControMedidas' corporal.idCorporal %}" method="GET">
+        <h2>Control Medidas</h2>
+        <label for="">Fecha</label>
+        <input type="date" name="fecha" value="2000-01-01">
+        <label for="">Brazo derecho</label>
+        <input type="text" name="brazoD">
+        <label for="">Brazo izquierdo</label>
+        <input type="text" name="brazoI">
+        <label for="">Abdomen Alto</label>
+        <input type="text" name="abdomenA">
+        <label for="">Cintura</label>
+        <input type="text" name="cintura">
+        <label for="">Abdomen Bajo</label>
+        <input type="text" name="abdomenB">
+        <label for="">Pierna Derecha</label>
+        <input type="text" name="piernaD">
+        <label for="">Pierna Izquierda</label>
+        <input type="text" name="piernaI">
+        <button>Guardar</button>
+    </form>
+
+</body>
+
+</html>

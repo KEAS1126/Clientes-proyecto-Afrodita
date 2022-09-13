@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Historial Facial</h1>
+    <form action="{% url 'crearFacial' mostrar.idCliente %}" method="GET">
+        <label for="">Nombre esteticista</label>
+        <input type="text" name="nombreE">
+        <h2>Factores Agravantes</h2>
+        <label for="">Actualmente está en tratamiento médico</label>
+        <select name="tratamientoM" id="">
+            <option value="No" >No</option>
+            <option value="Sí" >Sí</option>
+        </select>
+        <label for="">Cuál</label>
+        <textarea name="cualTM" id="" cols="30" rows="10"></textarea>
+        <label for="">Sustitución hormonal</label>
+        <select name="sustitucionH" id="">
+            <option value="No" >No</option>
+            <option value="Sí" >Sí</option>
+        </select>
+        <label for="">Toma anticonceptivo</label>
+        <select name="tomaA" id="">
+            <option value="No" >No</option>
+            <option value="Sí" >Sí</option>
+        </select>
+        <label for="">Drogas</label>
+        <select name="drogas" id="">
+            <option value="No" >No</option>
+            <option value="Sí" >Sí</option>
+        </select>
+        <label for="">Alimentos preferidos</label>
+        <textarea name="alimentosP" id="" cols="30" rows="10"></textarea>
+        <label for="">Alimentos rechazados</label>
+        <textarea name="alimentosR" id="" cols="30" rows="10"></textarea>
+        <label for="">Fuma</label>
+        <select name="fuma" id="">
+            <option value="No" >No</option>
+            <option value="Sí" >Sí</option>
+        </select>
+        <label for="">Toma licor</label>
+        <select name="tomaL" id="">
+            <option value="No" >No</option>
+            <option value="Sí" >Sí</option>
+        </select>
+        <label for="">Se protege del sol</label>
+        <select name="protegeS" id="">
+            <option value="No" >No</option>
+            <option value="Sí" >Sí</option>
+        </select>
+        <label for="">Duerme bien</label>
+        <select name="duermeB" id="">
+            <option value="No" >No</option>
+            <option value="Sí" >Sí</option>
+        </select>
+        <label for="">Menopausia</label>
+        <select name="menopausia" id="">
+            <option value="No" >No</option>
+            <option value="Sí" >Sí</option>
+        </select>
+        <label for="">Toma medicamentos orales o tópicos</label>
+        <select name="medicamentosOT" id="">
+            <option value="No" >No</option>
+            <option value="Sí" >Sí</option>
+        </select>
+        <label for="">Cuáles</label>
+        <textarea name="cualesOT" id="" cols="30" rows="10"></textarea>
+        <label for="">Padece de estrés</label>
+        <select name="padeceE" id="">
+            <option value="No" >No</option>
+            <option value="Sí" >Sí</option>
+        </select>
+        <label for="">Ha tenido cáncer de piel</label>
+        <select name="cancerP" id="">
+            <option value="No" >No</option>
+            <option value="Sí" >Sí</option>
+        </select>
+        <label for="">Asma</label>
+        <select name="asma" id="">
+            <option value="No" >No</option>
+            <option value="Sí" >Sí</option>
+        </select>
+        <label for="">Lupus</label>
+        <select name="lupus" id="">
+            <option value="No" >No</option>
+            <option value="Sí" >Sí</option>
+        </select>
+        <label for="">Herpes</label>
+        <select name="herpes" id="">
+            <option value="No" >No</option>
+            <option value="Sí" >Sí</option>
+        </select>
+        <label for="">Hepatitis</label>
+        <select name="hepatitis" id="">
+            <option value="No" >No</option>
+            <option value="Sí" >Sí</option>
+        </select>
+        <label for="">Epilepsia</label>
+        <select name="epilepsia" id="">
+            <option value="No" >No</option>
+            <option value="Sí" >Sí</option>
+        </select>
+        <label for="">Dolor de cabeza</label>
+        <select name="dolorC" id="">
+            <option value="No" >No</option>
+            <option value="Sí" >Sí</option>
+        </select>
+        <label for="">Ampollas febriles</label>
+        <select name="ampollasF" id="">
+            <option value="No" >No</option>
+            <option value="Sí" >Sí</option>
+        </select>
+        <label for="">Tiroides</label>
+        <select name="tiroides" id="">
+            <option value="No" >No</option>
+            <option value="Sí" >Sí</option>
+        </select>
+        <label for="">Problemas cardiaco</label>
+        <select name="problemasC" id="">
+            <option value="No" >No</option>
+            <option value="Sí" >Sí</option>
+        </select>
+        <label for="">Psicológicos</label>
+        <select name="psicológicos" id="">
+            <option value="No" >No</option>
+            <option value="Sí" >Sí</option>
+        </select>
+        <label for="">Urinarios</label>
+        <select name="urinarios" id="">
+            <option value="No" >No</option>
+            <option value="Sí" >Sí</option>
+        </select>
+        <label for="">Nasales</label>
+        <select name="nasales" id="">
+            <option value="No" >No</option>
+            <option value="Sí" >Sí</option>
+        </select>
+        <label for="">Digestivos</label>
+        <select name="digestivos" id="">
+            <option value="No" >No</option>
+            <option value="Sí" >Sí</option>
+        </select>
+        
+        <h3 for="">Está utilizando o uso</h3>
+        <label for="">Alfahidroxiacidos</label>
+        <select name="alfahidroxiacidos" id="">
+            <option value="No" >No</option>
+            <option value="Sí" >Sí</option>
+        </select>
+        <label for="">Retín A</label>
+        <select name="retinA" id="">
+            <option value="No" >No</option>
+            <option value="Sí" >Sí</option>
+        </select>
+        <label for="">Differin</label>
+        <select name="differin" id="">
+            <option value="No" >No</option>
+            <option value="Sí" >Sí</option>
+        </select>
+        <label for="">Accutane</label>
+        <select name="accutane" id="">
+            <option value="No" >No</option>
+            <option value="Sí" >Sí</option>
+        </select>
+        <label for="">Motivo de consulta</label>
+        <textarea name="motivoC" id="" cols="30" rows="10"></textarea>
+        <label for="">Es alérgico a algún producto cosmético o medicamento</label>
+        <textarea name="productoCM" id="" cols="30" rows="10"></textarea>
+       
+       <h2>Analisis de piel</h2>
+       <h3>Textura</h3>
+       <label for="">Normal</label>
+       <select name="normal" id="">
+           <option value="No" >No</option>
+           <option value="Sí" >Sí</option>
+       </select>
+       <label for="">Gruesa</label>
+       <select name="gruesa" id="">
+           <option value="No" >No</option>
+           <option value="Sí" >Sí</option>
+       </select>
+       <label for="">Áspera</label>
+       <select name="aspera" id="">
+           <option value="No" >No</option>
+           <option value="Sí" >Sí</option>
+       </select>
+       <label for="">Suave</label>
+       <select name="suave" id="">
+           <option value="No" >No</option>
+           <option value="Sí" >Sí</option>
+       </select>
+       <h3>Aspecto del poro</h3>
+       <label for="">Normal</label>
+       <select name="normal1" id="">
+           <option value="No" >No</option>
+           <option value="Sí" >Sí</option>
+       </select>
+       <label for="">Cerrado</label>
+       <select name="cerrado" id="">
+           <option value="No" >No</option>
+           <option value="Sí" >Sí</option>
+       </select>
+       <label for="">Dilatado</label>
+       <select name="dilatado" id="">
+           <option value="No" >No</option>
+           <option value="Sí" >Sí</option>
+       </select>
+       
+       <h3>Brillo</h3>
+       <label for="">Zonas mates</label>
+       <select name="zonasM" id="">
+           <option value="No" >No</option>
+           <option value="Sí" >Sí</option>
+       </select>
+       <label for="">Zonas Brillantes</label>
+       <select name="zonasB" id="">
+           <option value="No" >No</option>
+           <option value="Sí" >Sí</option>
+       </select>
+       <h3>Grado de hidratación</h3>
+       <label for="">Normal</label>
+       <select name="normal2" id="">
+           <option value="No" >No</option>
+           <option value="Sí" >Sí</option>
+       </select>
+       <label for="">Deshidratada</label>
+       <select name="deshidratada" id="">
+           <option value="No" >No</option>
+           <option value="Sí" >Sí</option>
+       </select>
+       <label for="">Hiperdeshidratada</label>
+       <select name="hiperdeshidratada" id="">
+           <option value="No" >No</option>
+           <option value="Sí" >Sí</option>
+       </select>
+
+       <h3>Fototipo de piel</h3>
+       <select name="fototipoP" id="">
+           <option value="fototipo 1" >fototipo 1</option>
+           <option value="fototipo 2" >fototipo 2</option>
+           <option value="fototipo 3" >fototipo 3</option>
+           <option value="fototipo 4" >fototipo 4</option>
+           <option value="fototipo 5" >fototipo 5</option>
+           <option value="fototipo 6" >fototipo 6</option>
+       </select>
+
+       <h3>Alteraciones del envejecimiento</h3>
+       <label for="">Lineas finas</label>
+       <select name="lineasF" id="">
+           <option value="No" >No</option>
+           <option value="Sí" >Sí</option>
+       </select>
+       <label for="">Profundas</label>
+       <select name="profundas" id="">
+           <option value="No" >No</option>
+           <option value="Sí" >Sí</option>
+       </select>
+       <label for="">Flacidez</label>
+       <select name="flacidez" id="">
+           <option value="No" >No</option>
+           <option value="Sí" >Sí</option>
+       </select>
+       <label for="">Párpados</label>
+       <select name="parpados" id="">
+           <option value="No" >No</option>
+           <option value="Sí" >Sí</option>
+       </select>
+       <label for="">Cuello</label>
+       <select name="cuello" id="">
+           <option value="No" >No</option>
+           <option value="Sí" >Sí</option>
+       </select>
+       <label for="">Nasogenianos</label>
+       <select name="nasogenianos" id="">
+           <option value="No" >No</option>
+           <option value="Sí" >Sí</option>
+       </select>
+       <label for="">Labios</label>
+       <select name="labios" id="">
+           <option value="No" >No</option>
+           <option value="Sí" >Sí</option>
+       </select>
+
+       <h3>Acné(desde cuándo)</h3>
+       <label for="">Comedones</label>
+       <select name="comedones" id="">
+           <option value="No" >No</option>
+           <option value="Sí" >Sí</option>
+       </select>
+       <label for="">Milias</label>
+       <select name="milias" id="">
+           <option value="No" >No</option>
+           <option value="Sí" >Sí</option>
+       </select>
+       <label for="">Quistes</label>
+       <select name="quistes" id="">
+           <option value="No" >No</option>
+           <option value="Sí" >Sí</option>
+       </select>
+
+       <h3>Pigmentación</h3>
+       <label for="">Melasma</label>
+       <select name="melasma" id="">
+           <option value="No" >No</option>
+           <option value="Sí" >Sí</option>
+       </select>
+       <label for="">Hipercromía</label>
+       <select name="hipercromia" id="">
+           <option value="No" >No</option>
+           <option value="Sí" >Sí</option>
+       </select>
+       <h3>Bolsas palpebrales</h3>
+       <label for="">Edema</label>
+       <select name="edema" id="">
+           <option value="No" >No</option>
+           <option value="Sí" >Sí</option>
+       </select>
+       <label for="">Grasa</label>
+       <select name="grasa" id="">
+           <option value="No" >No</option>
+           <option value="Sí" >Sí</option>
+       </select>
+       
+       <h2>Cuidados que realiza diariamente</h2>
+       <h3>Rutina diaria de higiene</h3>
+       <textarea name="rutinaH" id="" cols="30" rows="10"></textarea>
+       <h3>Cuidados habituales</h3>
+       <textarea name="cuidadosH" id="" cols="30" rows="10"></textarea>
+       <label for="">Mensuales</label>
+       <select name="mensuales" id="">
+           <option value="No" >No</option>
+           <option value="Sí" >Sí</option>
+       </select>
+       <h3>Productos que utiliza habitualmente</h3>
+       <textarea name="productoH" id="" cols="30" rows="10"></textarea>
+       <button type="submit">Guardar</button>
+    </form>
+</body>
+</html>

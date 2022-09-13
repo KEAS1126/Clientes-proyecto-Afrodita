@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="{% url 'actualizarCliente' mostrar.idCliente %}" method="GET">
+        <label for="">Nombre</label>
+        <input type="text" name="nombre" value="{{mostrar.nombre}}">
+        <label for="">Documento</label>
+        <input type="text" name="documento" value="{{mostrar.documento}}">
+        <label for="">Sexo</label>
+        <select name="sexo" id="">
+            <option value="{{mostrar.sexo}}">{{mostrar.sexo}}</option>
+            <option value="Femenino">Femenino</option>
+            <option value="Masculino">Masculino</option>
+        </select>
+        <label for="">Telefono</label>
+        <input type="text" name="telefono" value="{{mostrar.telefono}}">
+        <label for="">Dirección</label>
+        <input type="text" name="direccion" value="{{mostrar.direccion}}">
+        <label for="">Correo</label>
+        <input type="text" name="correo" value="{{mostrar.correo}}">
+        <label for="">Fecha de nacimiento</label>
+        <input type="date" name="fechaNacimiento" value="{{mostrar.fechaNacimiento}}">
+        <label>Estado civil</label>
+        <select name="estadoCivil" id="">
+            <option value="{{mostrar.estadoCivil}}">{{mostrar.estadoCivil}}</option>
+            <option value="Casado">Casado</option>
+            <option value="Union libre">Union libre</option>
+            <option value="Viudo">Viudo</option>
+            <option value="Soltero">Soltero</option>
+        </select>
+        <label for="">Número de hijos</label>
+        <input type="text" name="numeroHijos" value="{{mostrar.numeroHijos}}">
+       
+        <button type="submit">Guardar</button>
+    </form>
+</body>
+</html>

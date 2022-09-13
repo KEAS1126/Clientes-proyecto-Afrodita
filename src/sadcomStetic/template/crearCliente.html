@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Cliente</title>
+</head>
+<body>
+    <form action="/crearCliente/" method="POST">{% csrf_token %}
+        <label for="">Nombre</label>
+        <input type="text" name="nombre">
+        <label for="">Documento</label>
+        <input type="text" name="documento">
+        <label for="">Sexo</label>
+        <select name="sexo" id="">
+            <option value="Femenino" selected>Femenino</option>
+            <option value="Masculino" selected>Masculino</option>
+        </select>
+        <label for="">Telefono</label>
+        <input type="text" name="telefono">
+        <label for="">Dirección</label>
+        <input type="text" name="direccion">
+        <label for="">Correo</label>
+        <input type="text" name="correo">
+        <label for="">Fecha de nacimiento</label>
+        <input type="date" name="fechaNacimiento">
+        <label>Estado civil</label>
+        <select name="estadoCivil" id="">
+            <option value="Casado" selected>Casado</option>
+            <option value="Union libre" selected>Union libre</option>
+            <option value="Viudo" selected>Viudo</option>
+            <option value="Soltero" selected>Soltero</option>
+        </select>
+        <label for="">Número de hijos</label>
+        <input type="text" name="numeroHijos">
+        <button type="submit">Guardar</button>
+
+    </form>
+</body>
+</html>
