@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from clientes.models import Clientes,EsteticoCorporal,ControlMedidas,EsteticoFacial
+from django.views.generic import ListView
 
 # Create your views here.
 
@@ -9,6 +10,24 @@ def saludo(request):
 
 def formularioCliente(request):
     return render(request,"crearCliente.html")
+
+class formularioClientes(ListView):
+    model=Clientes
+    template_name='listaClientes.html'
+    def get_context_data(self,**kwargs):
+        context=super().get_context_data(**kwargs)
+        context['lista']=Clientes.objects.all()
+        context['color']='azul'
+        colors='yellow'
+        context['colors']=colors
+        return context
+    def dispatch(self, request, *args, **kwargs):
+        # if request.method=='GET':
+        #     return redirect()
+        return super().dispatch(request, *args, **kwargs)
+
+    # def post(self, request, *args, **kwargs):
+    #     return redirect()
 
 def crearCliente(request):
     nombreCliente=request.POST['nombre']
@@ -310,5 +329,8 @@ def verDetalleFacial(request, idFacial):
     mostrar=EsteticoFacial.objects.filter(idFacial=idFacial).first()
     facial={"mostrar":mostrar}
     return render(request,"VerDetalleFacial.html",facial)
+
+
+
 
 

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Kevin Estiven</h1>
+<table>
+    {% for listar in lista %}
+    <tr>
+      <td>{{listar.fechaCreacion}}</td>
+      <td>{{listar.nombre}}</td>
+      <td>{{listar.sexo}}</td>
+      <td>{{listar.documento}}</td>
+      <td>{{listar.fechaActualizacion}}</td>
+      <td><button><a href="{% url 'editarCliente' listar.idCliente %}">Editar</a> </button></td>
+      <td><button><a href="{% url 'verDetalleCliente' listar.idCliente %}">Ver Detalle</a> </button></td>
+    </tr>
+    {% endfor %}
+</table>
+
+<p>{{color}}</p>
+<p>{{colors}}</p>
+
+
+
+</body>
+</html>
