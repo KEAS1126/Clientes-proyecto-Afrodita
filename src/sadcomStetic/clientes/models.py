@@ -15,6 +15,8 @@ class Clientes(models.Model):
     estadoCivil=models.CharField(max_length=11)
     numeroHijos=models.CharField(max_length=2)
     fechaActualizacion=models.DateTimeField(auto_now=True)
+
+  
     
 class EsteticoCorporal(models.Model):
     

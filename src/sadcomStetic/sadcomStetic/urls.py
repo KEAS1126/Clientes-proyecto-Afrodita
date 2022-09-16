@@ -15,25 +15,26 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from clientes.views import saludo, cliente, editar, actualizar, verDetalleCliente,verDetalleCorporal,verDetalleFacial, crearCliente, crearCorporal,crearControMedidas, formularioCliente, formularioCorporal,formularioControlMedidas,crearFacial,formularioFacial , formularioClientes
+from clientes.views import saludo, cliente, editar, actualizar, verDetalleCliente,verDetalleCorporal,verDetalleFacial, crearCliente, crearCorporal,crearControMedidas, formularioCliente, formularioCorporal,formularioControlMedidas,crearFacial,formularioFacial , formularioClientes,saludo1
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('saludo/',saludo),
     path('cliente/',cliente),
-    path('editar/<int:idCliente>',editar, name='editarCliente'),
-    path('actualizar/<int:idCliente>',actualizar, name='actualizarCliente'),
-    path('verDetalleCliente/<int:idCliente>',verDetalleCliente, name='verDetalleCliente'),
-    path('verDetalleCorporal/<int:idCorporal>',verDetalleCorporal, name='verDetalleCorporal'),
-    path('verDetalleFacial/<int:idFacial>',verDetalleFacial, name='verDetalleFacial'),
+    path('editar/<int:id>',editar, name='editarCliente'),
+    path('actualizar/<int:id>',actualizar, name='actualizarCliente'),
+    path('verDetalleCliente/<int:id>',verDetalleCliente, name='verDetalleCliente'),
+    path('verDetalleCorporal/<int:id>',verDetalleCorporal, name='verDetalleCorporal'),
+    path('verDetalleFacial/<int:id>',verDetalleFacial, name='verDetalleFacial'),
     path('crearCliente/',crearCliente),
     path('formularioCliente/',formularioCliente),
-    path('crearCorporal/<int:idCliente>',crearCorporal, name='crearCorporal'),
-    path('crearControMedidas/<int:idCorporal>',crearControMedidas, name='crearControMedidas'),
-    path('formularioCorporal/<int:idCliente>',formularioCorporal, name='formularioCorporal'),
-    path('formularioControlMedidas/<int:idCorporal>',formularioControlMedidas, name='formularioControlMedidas'),
-    path('crearFacial/<int:idCliente>',crearFacial,name='crearFacial'),
-    path('formularioFacial/<int:idCliente>',formularioFacial,name='formularioFacial'),
+    path('crearCorporal/<int:id>',crearCorporal, name='crearCorporal'),
+    path('crearControMedidas/<int:id>',crearControMedidas, name='crearControMedidas'),
+    path('formularioCorporal/<int:id>',formularioCorporal, name='formularioCorporal'),
+    path('formularioControlMedidas/<int:id>',formularioControlMedidas, name='formularioControlMedidas'),
+    path('crearFacial/<int:id>',crearFacial,name='crearFacial'),
+    path('formularioFacial/<int:id>',formularioFacial,name='formularioFacial'),
     path('listaClientes/',formularioClientes.as_view(),name='formularioFacial'),
+    path('saludo1/',view=saludo1,name='saludo'),
     
 ]

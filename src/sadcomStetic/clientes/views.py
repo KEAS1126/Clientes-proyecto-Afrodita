@@ -1,9 +1,15 @@
+from inspect import iscoroutine
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from clientes.models import Clientes,EsteticoCorporal,ControlMedidas,EsteticoFacial
 from django.views.generic import ListView
 
 # Create your views here.
+def saludo1(request):
+    color="azul"
+    cliente=Clientes.objects.filter()
+    context={"color":color,"mostrar":cliente}
+    return render(request,"saludo.html",context) 
 
 def saludo(request):
     return HttpResponse("Hola Universo")
@@ -43,18 +49,18 @@ def crearCliente(request):
     clientes.save()
     return redirect("/cliente/")
 
-def formularioCorporal(request,idCliente):
-    cliente=Clientes.objects.filter(idCliente=idCliente).first()
-    clientes={"cliente":cliente}
-    return render(request,"crearCorporal.html",clientes)
+def formularioCorporal(request,id):
+    cliente=Clientes.objects.filter(idCliente=id).first()
+    contexto={"cliente":cliente}
+    return render(request,"crearCorporal.html",contexto)
 
-def formularioControlMedidas(request,idCorporal):
-    corporal=EsteticoCorporal.objects.filter(idCorporal=idCorporal).first()
-    clientes={"corporal":corporal}
-    return render(request,"crearControlMedidas.html",clientes)
+def formularioControlMedidas(request,id):
+    corporal=EsteticoCorporal.objects.filter(idCorporal=id).first()
+    contexto={"corporal":corporal}
+    return render(request,"crearControlMedidas.html",contexto)
 
-def crearCorporal(request,idCliente):
-    crearId=Clientes.objects.get(idCliente=idCliente)
+def crearCorporal(request,id):
+    crearId=Clientes.objects.get(idCliente=id)
     nombreECorporal=request.GET['nombreE']
     #Sufre problemas
     tensionACorporal=request.GET['tensionA']
@@ -173,10 +179,10 @@ def crearCorporal(request,idCliente):
     celulitisC=celulitisCCorporal,temperatura=temperaturaCorporal,altpigmentariasAR=altpigmentariasARCorporal,altpigmentariasAL=altpigmentariasALCorporal,altpigmentariasAP=altpigmentariasAPCorporal,altpigmentariasAMR=altpigmentariasAMRCorporal,altpigmentariasALV=altpigmentariasALVCorporal,altpigmentariasAPV=altpigmentariasAPVCorporal,sensacionLG=sensacionLGCorporal,sensacionMG=sensacionMGCorporal,sensacionMUG=sensacionMUGCorporal,sensacionLF=sensacionLFCorporal,sensacionMF=sensacionMFCorporal,sensacionMUF=sensacionMUFCorporal,sensacionPD=sensacionPDCorporal,sensacionPI=sensacionPICorporal,retieneL=retieneLCorporal,varices=varicesCorporal,arañitas=aranitasCorporal,observaciones=observacionesCorporal,idCliente=crearId
     )
     corporal.save()
-    return redirect("/cliente/")
+    return redirect("verDetalleCliente",id)
 
-def crearControMedidas(request,idCorporal):
-    crearIdC=EsteticoCorporal.objects.get(idCorporal=idCorporal)
+def crearControMedidas(request,id):
+    crearIdC=EsteticoCorporal.objects.get(idCorporal=id)
     #Control medidas
     fechaMedida=request.GET['fecha']
     brazoDMedida=request.GET['brazoD']
@@ -188,15 +194,15 @@ def crearControMedidas(request,idCorporal):
     piernaIMedida=request.GET['piernaI']
     medidas=ControlMedidas(fecha=fechaMedida,brazoD=brazoDMedida,brazoI=brazoIMedida,abdomenA=abdomenAMedida,cintura=cinturaMedida,abdomenB=abdomenBMedida,piernaD=piernaDMedida,piernaI=piernaIMedida,idCorporal=crearIdC)
     medidas.save()
-    return redirect("/cliente/")
+    return redirect("verDetalleCorporal",id)
 
-def formularioFacial(request,idCliente):
-    mostrar=Clientes.objects.filter(idCliente=idCliente).first()
-    clientes={"mostrar":mostrar}
-    return render(request,"crearFacial.html",clientes)
+def formularioFacial(request,id):
+    mostrar=Clientes.objects.filter(idCliente=id).first()
+    contexto={"mostrar":mostrar}
+    return render(request,"crearFacial.html",contexto)
 
-def crearFacial(request,idCliente):
-    crearId=Clientes.objects.get(idCliente=idCliente)
+def crearFacial(request,id):
+    crearId=Clientes.objects.get(idCliente=id)
     nombreEFacial=request.GET['nombreE']
     #Factores agravantes
     tratamientoMFacial=request.GET['tratamientoM']
@@ -277,19 +283,24 @@ def crearFacial(request,idCliente):
 
     facial=EsteticoFacial(nombreE=nombreEFacial,tratamientoM=tratamientoMFacial,cualTM=cualTMFacial,sustitucionH=sustitucionHFacial,tomaA=tomaAFacial,drogas=drogasFacial,alimentosP=alimentosPFacial,alimentosR=alimentosRFacial,fuma=fumaFacial,tomaL=tomaLFacial,protegeS=protegeSFacial,duermeB=duermeBFacial,menopausia=menopausiaFacial,medicamentosOT=medicamentosOTFacial,cualesOT=cualesOTFacial,padeceE=padeceEFacial,cancerP=cancerPFacial,asma=asmaFacial,lupus=lupusFacial,herpes=herpesFacial,hepatitis=hepatitisFacial,epilepsias=epilepsiaFacial,dolorC=dolorCFacial,ampollasF=ampollasFFacial,tiroides=tiroidesFacial,problemasC=problemasCFacial,psicologicos=psicológicosFacial,urinarios=urinariosFacial,nasales=nasalesFacial,digestivos=digestivosFacial,alfahidroxiacidos=alfahidroxiacidosFacial,retinA=retinAFacial,differin=differinFacial,accutane=accutaneFacial,motivoC=motivoCFacial,productoCM=productoCMFacial,normal=normalFacial,gruesa=gruesaFacial,aspera=asperaFacial,suave=suaveFacial,normal1=normal1Facial,cerrado=cerradoFacial,dilatado=dilatadoFacial,zonasM=zonasMFacial,zonasB=zonasBFacial,normal2=normal2Facial,deshidratada=deshidratadaFacial,hiperdeshidratada=hiperdeshidratadaFacial,fototipoP=fototipoPFacial,lineasF=lineasFFacial,profundas=profundasFacial,flacidez=flacidezFacial,parpados=parpadosFacial,cuello=cuelloFacial,nasogenianos=nasalesFacial,labios=labiosFacial,comedones=comedonesFacial,milias=miliasFacial,quistes=quistesFacial,melasma=melasmaFacial,hipercromia=hipercromiaFacial,edema=edemaFacial,grasa=grasaFacial,rutinasH=rutinaHFacial,cuidadosH=cuidadosHFacial,mensuales=mensualesFacial,productoH=productoHFacial,idCliente=crearId)
     facial.save()
-    return redirect("/cliente/")
+    return redirect("verDetalleCliente",id)
 
 def cliente(request):
     cliente=Clientes.objects.filter()
-    clientes={"cliente":cliente}
-    return render(request,"clientes.html",clientes)
+    contexto={"cliente":cliente}
+    return render(request,"clientes.html",contexto)
 
-def editar(request, idCliente):
-    mostrar=Clientes.objects.filter(idCliente=idCliente).first()
-    clientes={"mostrar":mostrar}
-    return render(request,"editarCliente.html",clientes)
+# def buscar(request):
+#     buscarCliente=request.GET['buscar']
+#     cliente=Clientes.objects.filter(nombre=buscarCliente,documento=buscarCliente)
+#     if buscarCliente==cliente:
+
+def editar(request, id):
+    mostrar=Clientes.objects.filter(idCliente=id).first()
+    contexto={"mostrar":mostrar}
+    return render(request,"editarCliente.html",contexto)
     
-def actualizar(request, idCliente):
+def actualizar(request, id):
     nombreCliente=request.GET['nombre']
     documentoCliente=request.GET['documento']
     sexoCliente=request.GET['sexo']
@@ -299,7 +310,7 @@ def actualizar(request, idCliente):
     fechaNacimientoCliente=request.GET['fechaNacimiento']
     estadoCivilCliente=request.GET['estadoCivil']
     numeroHijosCliente=request.GET['numeroHijos']
-    actualizar=Clientes.objects.get(idCliente=idCliente)
+    actualizar=Clientes.objects.get(idCliente=id)
     actualizar.nombre=nombreCliente
     actualizar.documento=documentoCliente
     actualizar.sexo=sexoCliente
@@ -312,23 +323,23 @@ def actualizar(request, idCliente):
     actualizar.save()
     return redirect("/cliente/")
 
-def verDetalleCliente(request, idCliente):
-    mostrar=Clientes.objects.filter(idCliente=idCliente).first()
-    corporal=EsteticoCorporal.objects.filter(idCliente=idCliente) 
-    facial=EsteticoFacial.objects.filter(idCliente=idCliente) 
-    clientes={"mostrar":mostrar,"corporal":corporal,"facial":facial}
-    return render(request,"VerDetalleCliente.html",clientes)
+def verDetalleCliente(request, id):
+    mostrar=Clientes.objects.filter(idCliente=id).first()
+    corporal=EsteticoCorporal.objects.filter(idCliente=id) 
+    facial=EsteticoFacial.objects.filter(idCliente=id) 
+    contexto={"mostrar":mostrar,"corporal":corporal,"facial":facial}
+    return render(request,"VerDetalleCliente.html",contexto)
 
-def verDetalleCorporal(request, idCorporal):
-    mostrar=EsteticoCorporal.objects.filter(idCorporal=idCorporal).first()
-    medidas=ControlMedidas.objects.filter(idCorporal=idCorporal)
-    corporal={"mostrar":mostrar,"medidas":medidas}
-    return render(request,"VerDetalleCorporal.html",corporal)
+def verDetalleCorporal(request, id):
+    mostrar=EsteticoCorporal.objects.filter(idCorporal=id).first()
+    medidas=ControlMedidas.objects.filter(idCorporal=id)
+    contexto={"mostrar":mostrar,"medidas":medidas}
+    return render(request,"VerDetalleCorporal.html",contexto)
 
-def verDetalleFacial(request, idFacial):
-    mostrar=EsteticoFacial.objects.filter(idFacial=idFacial).first()
-    facial={"mostrar":mostrar}
-    return render(request,"VerDetalleFacial.html",facial)
+def verDetalleFacial(request, id):
+    mostrar=EsteticoFacial.objects.filter(idFacial=id).first()
+    contexto={"mostrar":mostrar}
+    return render(request,"VerDetalleFacial.html",contexto)
 
 
 
