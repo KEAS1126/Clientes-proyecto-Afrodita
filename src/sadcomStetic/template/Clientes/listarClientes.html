@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>listar Clientes</title>
+</head>
+<body>
+    <button><a href="{% url 'crear-Cliente' %}">Crear</a> </button>
+    <table>
+        <tr>
+            <th>Fecha creación</th>
+            <th>Nombre</th>
+            <th>Sexo</th>
+            <th>Documento</th>
+            <th>Ultima Actualización</th>
+            <th>Funciones</th>
+        </tr>
+
+        {% for listar in clientes %}
+        <tr>
+            <td>{{listar.fechaCreacion}}</td>
+            <td>{{listar.nombre}}</td>
+            <td>{{listar.sexo}}</td>
+            <td>{{listar.documento}}</td>
+            <td>{{listar.fechaActualizacion}}</td>
+            <td><button><a href="{% url 'editar-Cliente' listar.idCliente %}">Editar</a> </button></td>
+            <td><button><a href="{% url 'eliminar-Cliente' listar.idCliente %}">Eliminar</a> </button></td>
+            <td><button><a href="{% url 'verDetalle-Cliente' listar.idCliente %}">Ver Detalle</a> </button></td>
+        </tr>
+        {% endfor %}
+
+        </tr>
+    </table>
+</body>
+</html>

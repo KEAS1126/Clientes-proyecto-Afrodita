@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Cliente</title>
+</head>
+<body>
+    <form  method="POST">{% csrf_token %}
+        <label for="">Nombre</label>
+        {{formulario_cliente.nombre}}
+        {% for error in formulario_cliente.nombre.errors %}
+         <p style="color:red"> {{error}}</p>
+        {% endfor %}
+        <label for="">Documento</label>
+        {{formulario_cliente.documento}}
+        {% for error in formulario_cliente.documento.errors %}
+         <p style="color:red"> {{error}}</p>
+        {% endfor %}
+        <label for="">Sexo</label>
+        {{formulario_cliente.sexo}}
+        <label for="">Telefono</label>
+        {{formulario_cliente.telefono}}
+        {% for error in formulario_cliente.telefono.errors %}
+         <p style="color:red"> {{error}}</p>
+        {% endfor %}
+        <label for="">Dirección</label>
+        {{formulario_cliente.direccion}}
+        {% for error in formulario_cliente.direccion.errors %}
+         <p style="color:red"> {{error}}</p>
+        {% endfor %}
+        <label for="">Correo</label>
+        {{formulario_cliente.correo}}
+        <label for="">Fecha de nacimiento</label>
+        {{formulario_cliente.fechaNacimiento}}
+        {% for error in formulario_cliente.fechaNacimiento.errors %}
+        <p style="color:red"> {{error}}</p>
+        {% endfor %}
+        <label>Estado civil</label>
+        {{formulario_cliente.estadoCivil}}
+        <label for="">Número de hijos</label>
+        {{formulario_cliente.numeroHijos}}
+        {% for error in formulario_cliente.numeroHijos.errors %}
+        <p style="color:red"> {{error}}</p>
+        {% endfor %}
+        <button type="submit">Guardar</button>
+        
+    </form>
+</body>
+</html>

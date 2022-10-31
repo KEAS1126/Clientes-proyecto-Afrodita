@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ver Detalle Cita</title>
+</head>
+<body>
+    <button><a href="{% url 'formulario-Agenda-Costo' cliente.idCliente %}">Crear costo</a> </button>
+    <table>
+        <tr>
+            <th>Documento</th>
+            <th>Sesiones</th>
+            <th>Costo</th>
+            <th>Abono</th>
+            <th>Funciones</th>
+        </tr>
+
+        {% for listar in citas %}
+        <tr>
+            <td>{{listar.idCliente.documento}}</td>
+            <td>{{listar.sesiones}}</td>
+            <td>{{listar.costo}}</td>
+            <td>{{listar.abono}}</td>
+            <td><button><a href="">Editar</a> </button></td>
+            <td><button><a href="">Eliminar</a> </button></td>
+            <td><button><a href="">Ver Detalle</a> </button></td>
+        </tr>
+        {% endfor %}
+
+        </tr>
+    </table> 
+</body>
+</html>

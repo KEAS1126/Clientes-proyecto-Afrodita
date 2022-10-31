@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda Costo</title>
+</head>
+<body>
+    <form action="{% url 'Agenda-Costo' cliente.idCliente %}" method="POST">{% csrf_token %}
+        
+        <label for="">Número de Sesiones</label>
+        <input type="text" name="sesiones">
+        <label for="">Costo</label>
+        <input type="text" name="costo">
+        <label for="">Abono</label>
+        <input type="text" name="abono">
+        {{mensaje}}
+        <button>Guardar</button>
+    </form>
+    
+
+
+    
+    
+</body>
+</html>

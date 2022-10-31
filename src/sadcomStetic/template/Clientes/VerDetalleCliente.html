@@ -19,7 +19,7 @@
     <li>{{mostrar.estadoCivil}}</li>
     <li>{{mostrar.numeroHijos}}</li>
 
-    <button><a href="/formularioCorporal/{{mostrar.idCliente}}">crearCorporal</a></button>
+    <button><a href="{% url 'crear-Corporal' mostrar.idCliente %}">crearCorporal</a></button>
     <table>
         <tr>
             <th>Fecha creación</th>
@@ -31,7 +31,7 @@
         <tr>
             <td>{{listar.fechaCreacion}}</td>
             <td>{{listar.nombreE}}</td>
-            <td><button><a href="{% url 'verDetalleCorporal' listar.idCorporal %}">Ver Detalle</a> </button></td>
+            <td><button><a href="">Ver Detalle</a> </button></td>
         </tr>
         {% endfor %}
 
@@ -49,7 +49,7 @@
         <tr>
             <td>{{listar.fechaCreacion}}</td>
             <td>{{listar.nombreE}}</td>
-            <td><button><a href="{% url 'verDetalleFacial' listar.idFacial %}">Ver Detalle</a> </button></td>
+            <td><button><a href="">Ver Detalle</a> </button></td>
         </tr>
         {% endfor %}
 

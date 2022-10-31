@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historial Corporal</title>
+</head>
+<body>
+    <h1>Historial Corporal</h1>
+    <form  method="POST">{% csrf_token %}
+        <input name="idCliente" hidden value="{{idCliente}}">
+        <label for="">Nombre esteticista</label>
+        {{formulario_corporal.nombreE}}
+
+        <h2>Estado de salud y modo de vida</h2>
+        <h3>Sufre Problemas</h3>
+        <label for="">Tension arterial</label>
+        {{formulario_corporal.tensionA}}
+
+        <label for="">Digestivo</label>
+        {{formulario_corporal.digestivo}}
+  
+        <label for="">Circulacion</label>
+        {{formulario_corporal.circulacion}}
+
+        <label for="">Endocrino</label>
+        {{formulario_corporal.endrocrino}}
+
+        <label for="">Cardiacos</label>
+        {{formulario_corporal.cardiacos}}
+        <label for="">Otros</label>
+        {{formulario_corporal.otrosP}}
+       
+        <button type="submit" for="crear">Guardar</button>
+
+    </form>
+
+</body>
+
+</html>

@@ -15,26 +15,100 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from clientes.views import saludo, cliente, editar, actualizar, verDetalleCliente,verDetalleCorporal,verDetalleFacial, crearCliente, crearCorporal,crearControMedidas, formularioCliente, formularioCorporal,formularioControlMedidas,crearFacial,formularioFacial , formularioClientes,saludo1
+from clientes.views import *
+from citas.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('saludo/',saludo),
-    path('cliente/',cliente),
-    path('editar/<int:id>',editar, name='editarCliente'),
-    path('actualizar/<int:id>',actualizar, name='actualizarCliente'),
-    path('verDetalleCliente/<int:id>',verDetalleCliente, name='verDetalleCliente'),
-    path('verDetalleCorporal/<int:id>',verDetalleCorporal, name='verDetalleCorporal'),
-    path('verDetalleFacial/<int:id>',verDetalleFacial, name='verDetalleFacial'),
-    path('crearCliente/',crearCliente),
-    path('formularioCliente/',formularioCliente),
-    path('crearCorporal/<int:id>',crearCorporal, name='crearCorporal'),
-    path('crearControMedidas/<int:id>',crearControMedidas, name='crearControMedidas'),
-    path('formularioCorporal/<int:id>',formularioCorporal, name='formularioCorporal'),
-    path('formularioControlMedidas/<int:id>',formularioControlMedidas, name='formularioControlMedidas'),
-    path('crearFacial/<int:id>',crearFacial,name='crearFacial'),
-    path('formularioFacial/<int:id>',formularioFacial,name='formularioFacial'),
-    path('listaClientes/',formularioClientes.as_view(),name='formularioFacial'),
-    path('saludo1/',view=saludo1,name='saludo'),
     
+    path(
+        'listarCliente/',
+        view=listarCliente, 
+        name='listar-Cliente'
+        ),
+
+    path(
+        'crearCliente/',
+        view=crearCliente, 
+        name='crear-Cliente'
+        ),
+
+    path(
+        'editarCliente/<int:id>',
+        view=editarCliente, 
+        name='editar-Cliente'
+        ),
+
+    path(
+        'eliminarCliente/<int:id>',
+        view=eliminarCliente, 
+        name='eliminar-Cliente'
+        ),
+    
+    path(
+        'verDetalleCliente/<int:id>',
+        view=verDetalleCliente, 
+        name='verDetalle-Cliente'
+        ),
+
+    path(
+        'crearCorporal/<int:id>',
+        view=crearCorporal, 
+        name='crear-Corporal'
+        ),
+
+    path(
+        'crearFacial/<int:id>',
+        view=crearFacial, 
+        name='crear-Facial'
+        ),
+
+    
+    #Citas
+
+     path(
+        'listarCitas/',
+        view=listarCita, 
+        name='listar-Citas'
+        ),
+
+    path(
+        'crearCitas/',
+        view=crearCita, 
+        name='crear-Citas'
+        ),
+
+    path(
+        'editarCitas/<int:id>',
+        view=editarCita, 
+        name='editar-Citas'
+        ),
+
+    path(
+        'eliminarCitas/<int:id>',
+        view=eliminarCita, 
+        name='eliminar-Citas'
+        ),
+
+    path(
+        'verDetalleCita/<int:id>',
+        view=verDetalleCita, 
+        name='verDetalle-Cita'
+        ),
+
+    path(
+        'formularioCosto/<int:id>',
+        view=formularioAgendaCosto, 
+        name='formulario-Agenda-Costo'
+        ),
+
+    path(
+        'crearCosto/<int:id>',
+        view=crearAgendaCosto, 
+        name='Agenda-Costo'
+        ),
+
+
+
+
 ]

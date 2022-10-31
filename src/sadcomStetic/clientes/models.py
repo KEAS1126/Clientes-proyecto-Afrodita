@@ -2,11 +2,19 @@ from django.db import models
 
 # Create your models here.
 
+# class SexoOpciones(models.Model):
+#     hombre=models.CharField(max_length=100)
+#     mujer=models.CharField(max_length=100)
+
+#     def __str__(self):
+#         return '{} {}'.format(self.hombre,self.mujer)
+    
+
 class Clientes(models.Model):
     idCliente=models.AutoField(primary_key=True)
     fechaCreacion=models.DateTimeField(auto_now_add=True)
     nombre=models.CharField(max_length=60)
-    sexo=models.CharField(max_length=9, blank=True,null=True)
+    sexo=models.CharField(max_length=10)
     documento=models.CharField(max_length=10)
     fechaNacimiento=models.CharField(max_length=10)
     telefono=models.CharField(max_length=10,blank=True,null=True )
@@ -16,121 +24,16 @@ class Clientes(models.Model):
     numeroHijos=models.CharField(max_length=2)
     fechaActualizacion=models.DateTimeField(auto_now=True)
 
-  
-    
+    def __str__(self) -> str:
+        return '{}'.format(self.documento)
+
 class EsteticoCorporal(models.Model):
     
     idCorporal=models.AutoField(primary_key=True)
     idCliente=models.ForeignKey(Clientes,on_delete=models.PROTECT)
     fechaCreacion=models.DateTimeField(auto_now_add=True)
     nombreE=models.CharField(max_length=60)
-    #Sufre problemas
-    tensionA=models.CharField(max_length=2)
-    digestivo=models.CharField(max_length=2)
-    circulacion=models.CharField(max_length=2)
-    endrocrino=models.CharField(max_length=2)
-    cardiacos=models.CharField(max_length=2)
-    otrosP=models.TextField()
-    #Peso actual
-    kilos=models.CharField(max_length=7)
-    talla=models.CharField(max_length=7)
-    altura=models.CharField(max_length=7)
-    masaC=models.CharField(max_length=7)
-    siluetas=models.CharField(max_length=20)
-    cirugias=models.TextField()
-    fibrosis=models.TextField()
-    costumbresA=models.TextField()
-    deportesP=models.TextField()
-    #Modo vida
-    modoV=models.CharField(max_length=10)
-    fuma=models.CharField(max_length=2)
-    alcohol=models.CharField(max_length=2)
-    calidadS=models.CharField(max_length=5)
-    notasV=models.TextField()
-    #Observaciones
-    problemasT=models.TextField()
-    #Grasa localizada
-    abdomen=models.CharField(max_length=2)
-    muslos=models.CharField(max_length=2)
-    nalgas=models.CharField(max_length=2)
-    espalda=models.CharField(max_length=2)
-    piernas=models.CharField(max_length=2)
-    brazos=models.CharField(max_length=2) 
-    notasO=models.TextField()
-    tratamientosR=models.TextField()
-    tratamientosE=models.TextField()
-    #Antecedentes personales
-    dermatitis=models.CharField(max_length=2)
-    cirugias1=models.CharField(max_length=2)
-    cualesC=models.TextField()
-    hemofilia=models.CharField(max_length=2)
-    embarazo=models.CharField(max_length=2)
-    cancer=models.CharField(max_length=2)
-    hepatitis=models.CharField(max_length=2)
-    diabetes=models.CharField(max_length=2)
-    artritis=models.CharField(max_length=2)
-    artrosis=models.CharField(max_length=2)
-    escoliosis=models.CharField(max_length=2)
-    fracturas=models.CharField(max_length=2)
-    implantesM=models.CharField(max_length=2)
-    hipertencion=models.CharField(max_length=2)
-    herniasD=models.CharField(max_length=2)
-    dondeHD=models.TextField()
-    hiperlordosis=models.CharField(max_length=2)
-    hipercifosis=models.CharField(max_length=2)
-    problemasC=models.CharField(max_length=2)
-    hipotension=models.CharField(max_length=2)
-    osteoporosis=models.CharField(max_length=2)
-    osteomielitis=models.CharField(max_length=2)
-    comedones=models.CharField(max_length=2)
-    pustulas=models.CharField(max_length=2)
-    brotes=models.CharField(max_length=2)
-    quistes=models.CharField(max_length=2)
-    nudulos=models.CharField(max_length=2)
-    zonasA=models.TextField()
-    #Adiposidadl
-    adiposidadL=models.CharField(max_length=2)
-    adiposidadZ=models.CharField(max_length=2)
-    adiposidadC=models.CharField(max_length=2)
-    #Cicatrices o estrías
-    cicatricesEL=models.CharField(max_length=2)
-    cicatricesEZ=models.CharField(max_length=2)
-    cicatricesET=models.CharField(max_length=2)
-    #Flacidez
-    flacidezL=models.CharField(max_length=2)
-    flacidezZ=models.CharField(max_length=2)
-    flacidezC=models.CharField(max_length=2)
-    #Alt.vasculares
-    altVascularesL=models.CharField(max_length=2)
-    altVascularesZ=models.CharField(max_length=2)
-    altVascularesT=models.CharField(max_length=2)
-    #Celulitis
-    celulitisL=models.CharField(max_length=2)
-    celulitisZ=models.CharField(max_length=2)
-    celulitisC=models.CharField(max_length=2)
-    #Temperatura
-    temperatura=models.CharField(max_length=8)
-    #Alt.pigmentarias
-    altpigmentariasAR=models.CharField(max_length=2)
-    altpigmentariasAL=models.CharField(max_length=2)
-    altpigmentariasAP=models.CharField(max_length=2)
-    altpigmentariasAMR=models.CharField(max_length=2)
-    altpigmentariasALV=models.CharField(max_length=2)
-    altpigmentariasAPV=models.CharField(max_length=2)
-    #Sensación
-    sensacionLG=models.CharField(max_length=2)
-    sensacionMG=models.CharField(max_length=2)
-    sensacionMUG=models.CharField(max_length=2)
-    sensacionLF=models.CharField(max_length=2)
-    sensacionMF=models.CharField(max_length=2)
-    sensacionMUF=models.CharField(max_length=2)
-    sensacionPD=models.CharField(max_length=2)
-    sensacionPI=models.CharField(max_length=2)
-    retieneL=models.CharField(max_length=2)
-    varices=models.CharField(max_length=2)
-    arañitas=models.CharField(max_length=2)
-    observaciones=models.TextField()
-    
+
 class ControlMedidas(models.Model):
     idMedidas=models.AutoField(primary_key=True)
     idCorporal=models.ForeignKey(EsteticoCorporal, null=True, on_delete=models.PROTECT)

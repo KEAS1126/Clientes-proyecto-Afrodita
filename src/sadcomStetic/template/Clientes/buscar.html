@@ -1,27 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clientes</title>
+    <title>buscar</title>
 </head>
+
 <body>
 
-  <button><a href="/formularioCliente/">Crear</a> </button>
+    {% if buscar == cliente %}
 
     <table>
         <tr>
-          <th>Fecha creación</th>
-          <th>Nombre</th>
-          <th>Sexo</th>
-          <th>Documento</th>
-          <th>Ultima Actualización</th>
-          <th>Funciones</th>
+            <th>Fecha creación</th>
+            <th>Nombre</th>
+            <th>Sexo</th>
+            <th>Documento</th>
+            <th>Ultima Actualización</th>
+            <th>Funciones</th>
         </tr>
-        
-          {% for listar in cliente %}
-          <tr>
+
+        {% for listar in cliente %}
+        <tr>
             <td>{{listar.fechaCreacion}}</td>
             <td>{{listar.nombre}}</td>
             <td>{{listar.sexo}}</td>
@@ -29,11 +31,16 @@
             <td>{{listar.fechaActualizacion}}</td>
             <td><button><a href="{% url 'editarCliente' listar.idCliente %}">Editar</a> </button></td>
             <td><button><a href="{% url 'verDetalleCliente' listar.idCliente %}">Ver Detalle</a> </button></td>
-          </tr>
-          {% endfor %}
-          
         </tr>
-      </table>
-      
+        {% endfor %}
+        {% endif %}
+
+
+        </tr>
+    </table>
+
+
+
 </body>
+
 </html>
