@@ -20,7 +20,7 @@ class AgendaFecha(models.Model):
     idAgendaFecha=models.AutoField(primary_key=True)
     idAgendaCosto=models.ForeignKey( Citas, on_delete=models.PROTECT)
     fechaAgenda=models.CharField(max_length=10)
-    estado=models.CharField(max_length=8)
+    estado=models.CharField(max_length=9)
 
 
 

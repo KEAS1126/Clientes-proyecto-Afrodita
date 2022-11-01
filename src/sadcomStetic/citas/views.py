@@ -105,16 +105,18 @@ def crearAgendaFecha(request, id):
 
         if clienteAbono<clienteCosto:
             estado="Por pagar"
-            contexto={'estado':estado}
+            contexto={'estado':estado,'formulario_agenda_fecha':formulario_agenda_fecha,'idAgendaCosto':id}
             return render(request,'Citas/crearFecha.html',contexto)
         elif clienteAbono==clienteCosto:
             estado="Pagado"
-            contexto={'estado':estado}
+            contexto={'estado':estado,'formulario_agenda_fecha':formulario_agenda_fecha,'idAgendaCosto':id}
             return render(request,'Citas/crearFecha.html',contexto)
         elif clienteAbono>clienteCosto:
             mensaje="La cantidad que esta abonando es mayor alo que debe pagar"
-            contexto={'mensaje':mensaje}
+            contexto={'mensaje':mensaje,'formulario_agenda_fecha':formulario_agenda_fecha,'idAgendaCosto':id}
             return render(request,'Citas/crearFecha.html',contexto)
+        
+        
     
-    contexto={'formulario_agenda_fecha':formulario_agenda_fecha,'idAgendaCosto':id}
-    return render(request,'Citas/crearFecha.html',contexto)
+    
+    

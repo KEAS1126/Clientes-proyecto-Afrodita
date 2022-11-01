@@ -4,13 +4,13 @@ from citas.models import *
 from django.forms import ValidationError
 
 class FormularioCitas(forms.ModelForm):
-    # def clean_fechaCita(self):
-    #     fechaCita=self.cleaned_data['fechaCita']
-    #     actual=datetime.now()
-    #     actualStr=actual.strftime('%Y-%m-%d')
-    #     if fechaCita<actualStr:
-    #         raise  ValidationError("Error. se esta eligiendo una fecha de dias anteriores")
-    #     return fechaCita
+    def clean_fechaCita(self):
+        fechaCita=self.cleaned_data['fechaCita']
+        actual=datetime.now()
+        actualStr=actual.strftime('%Y-%m-%d')
+        if fechaCita<actualStr:
+            raise  ValidationError("Error. se esta eligiendo una fecha de dias anteriores")
+        return fechaCita
 
     class Meta:
         model=Citas
