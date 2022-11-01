@@ -27,29 +27,22 @@ class FormularioCitas(forms.ModelForm):
             'idCliente':forms.TextInput(attrs={'hidden':''}),
         }
 
-# class FormularioAgendaCosto(forms.ModelForm):
-#     def clean_costo(self,costo):
-#         costo=self.cleaned_data['costo']
-#         return costo
-#     def clean_abono(self,abono):
-#         abono=self.cleaned_data['abono']
-
-#         return abono
-#     class Meta:
-#         model=AgendaCosto
-#         fields='__all__'
-#         widgets={   
-#             'sesiones':forms.TextInput(attrs={'class':'form-control','placeholder':'Ingrese el Número de sesiones'}),
-#             'costo':forms.TextInput(attrs={'class':'form-control','placeholder':'Ingrese el costo del servicio'}),
-#             'abono':forms.TextInput(attrs={'class':'form-control','placeholder':'Ingrese el abono del servicio'}),
-#         }
+class FormularioAgendaCosto(forms.ModelForm):
+    class Meta:
+        model=AgendaCosto
+        fields='__all__'
+        widgets={   
+            'sesiones':forms.TextInput(attrs={'class':'form-control','placeholder':'Ingrese el Número de sesiones'}),
+            'costo':forms.TextInput(attrs={'class':'form-control','placeholder':'Ingrese el costo del servicio'}),
+            'abono':forms.TextInput(attrs={'class':'form-control','placeholder':'Ingrese el abono del servicio'}),
+        }
 
 class FormularioAgendaFecha(forms.ModelForm):
     class Meta:
         model=AgendaFecha
         fields='__all__'
         widgets={   
-            'FechaAgenda':forms.TextInput(attrs={'class':'form-control','placeholder':'Ingrese la fecha de las sesión'}),
+            'fechaAgenda':forms.TextInput(attrs={'class':'form-control','type':'date'}),
         }
         
         

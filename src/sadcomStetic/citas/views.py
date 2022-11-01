@@ -53,66 +53,68 @@ def eliminarCita(request,id):
 
 def verDetalleCita(request, id):
     cliente=Clientes.objects.filter(idCliente=id).first()
-    citas=AgendaCosto.objects.filter()
-    contexto={"citas":citas,"cliente":cliente}
+    agendaCosto=AgendaCosto.objects.filter()
+    contexto={"agendaCosto":agendaCosto,"cliente":cliente}
     return render(request,"Citas/verDetalleCita.html",contexto)
 
-
-def formularioAgendaCosto(request,id):
-    cliente=Clientes.objects.filter(idCliente=id)
-    contexto={"cliente":cliente}
-    return render(request,'Citas/crearCosto.html',contexto)
-    
 def crearAgendaCosto(request, id):
 
-    clienteSesiones= request.POST['sesiones']
-    clienteAbono= request.POST['abono']
-    clienteCosto= request.POST['costo']
-
-    if clienteAbono<clienteCosto:
-        estado="Por pagar"
-        costo=AgendaCosto(sesiones=clienteSesiones,abono=clienteAbono,costo=clienteCosto,estado=estado,idCliente=id)
-        costo.save()
-        return redirect('verDetalle-Cita', id)
-    elif clienteAbono==clienteCosto:
-        estado="Pagado"
-        costo=AgendaCosto(sesiones=clienteSesiones,abono=clienteAbono,costo=clienteCosto,estado=estado,idCliente=id)
-        costo.save()
-        return redirect('verDetalle-Cita', id)
-    elif clienteAbono>clienteCosto:
-        mensaje="La cantidad que esta baonando es mayor alo que debe pagar"
-        contexto={'mensaje':mensaje}
-        return render(request,'Citas/crearCosto.html',contexto)
-
-
-
-
-
-    # if request.method=='POST':
-    #     formulario_agenda_costo=FormularioAgendaCosto(request.POST)
-    #     if formulario_agenda_costo.is_valid():
-    #         formulario_agenda_costo.save()
-    #         return redirect('verDetalle-Cita', id)
-    # else: 
-    #     formulario_agenda_costo=FormularioAgendaCosto()
+    if request.method=='POST':
+        formulario_agenda_costo=FormularioAgendaCosto(request.POST)
+        if formulario_agenda_costo.is_valid():
+            formulario_agenda_costo.save()
+            return redirect('verDetalle-Cita', id)
+    else: 
+        formulario_agenda_costo=FormularioAgendaCosto()
     
-    # clienteAbono= formulario_agenda_costo.clean_abono('abono')
-    # clienteCosto= formulario_agenda_costo.clean_costo('costo')
-    # if clienteAbono<clienteCosto:
-    #     estado="Por pagar"
-    #     contexto={'estado':estado}
-    #     return render(request,'Citas/crearCosto.html',contexto)
-    # elif clienteAbono==clienteCosto:
-    #     estado="Pagado"
-    #     contexto={'estado':estado}
-    #     return render(request,'Citas/crearCosto.html',contexto)
-    # elif clienteAbono>clienteCosto:
-    #     mensaje="La cantidad que esta baonando es mayor alo que debe pagar"
-    #     contexto={'mensaje':mensaje}
-    #     return render(request,'Citas/crearCosto.html',contexto)
+    contexto={'formulario_agenda_costo':formulario_agenda_costo,'idCliente':id}
+    return render(request,'Citas/crearCosto.html',contexto)
 
+def editarAgendaCosto(request,id):
+    agendaCosto=AgendaCosto.objects.get(idAgendaCosto=id)
+    if request.method=='GET':
+        formulario_agenda_costo=FormularioAgendaCosto(instance=agendaCosto)
+    else:
+        formulario_agenda_costo=FormularioAgendaCosto(request.POST,instance=agendaCosto)
+        if formulario_agenda_costo.is_valid():
+            formulario_agenda_costo.save()
+            return redirect('verDetalle-Cita', id)
+    contexto={'formulario_agenda_costo':formulario_agenda_costo,'idCliente':id}
+    return render(request,'Citas/crearCosto.html',contexto)
 
+def verDetalleCosto(request, id):
+    agendaCosto=AgendaCosto.objects.filter(idAgendaCosto=id).first()
+    agendaFecha=AgendaFecha.objects.filter()
+    contexto={"agendaFecha":agendaFecha,"agendaCosto":agendaCosto}
+    return render(request,"Citas/verDetalleCosto.html",contexto)
 
+def crearAgendaFecha(request, id):
+    if request.method=='POST':
+        formulario_agenda_fecha=FormularioAgendaFecha(request.POST)
+        if formulario_agenda_fecha.is_valid():
+            formulario_agenda_fecha.save()
+            return redirect('verDetalle-Costo', id)
+    else: 
+        formulario_agenda_fecha=FormularioAgendaFecha()
 
-    # contexto={'formulario_agenda_costo':formulario_agenda_costo,'idCliente':id}
-    # return render(request,'Citas/crearCosto.html',contexto)
+    agendacosto=AgendaCosto.objects.filter(idAgendaCosto=id)
+    for listar in agendacosto:
+
+        clienteCosto=listar.costo
+        clienteAbono=listar.abono
+
+        if clienteAbono<clienteCosto:
+            estado="Por pagar"
+            contexto={'estado':estado}
+            return render(request,'Citas/crearFecha.html',contexto)
+        elif clienteAbono==clienteCosto:
+            estado="Pagado"
+            contexto={'estado':estado}
+            return render(request,'Citas/crearFecha.html',contexto)
+        elif clienteAbono>clienteCosto:
+            mensaje="La cantidad que esta abonando es mayor alo que debe pagar"
+            contexto={'mensaje':mensaje}
+            return render(request,'Citas/crearFecha.html',contexto)
+    
+    contexto={'formulario_agenda_fecha':formulario_agenda_fecha,'idAgendaCosto':id}
+    return render(request,'Citas/crearFecha.html',contexto)

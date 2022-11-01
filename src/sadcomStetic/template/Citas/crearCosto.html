@@ -7,15 +7,14 @@
     <title>Agenda Costo</title>
 </head>
 <body>
-    <form action="{% url 'Agenda-Costo' cliente.idCliente %}" method="POST">{% csrf_token %}
-        
+    <form method="POST">{% csrf_token %}
+        <input type="text" name="idCliente" hidden value="{{idCliente}}" >
         <label for="">Número de Sesiones</label>
-        <input type="text" name="sesiones">
+        {{formulario_agenda_costo.sesiones}}
         <label for="">Costo</label>
-        <input type="text" name="costo">
+        {{formulario_agenda_costo.costo}}
         <label for="">Abono</label>
-        <input type="text" name="abono">
-        {{mensaje}}
+        {{formulario_agenda_costo.abono}}
         <button>Guardar</button>
     </form>
     

@@ -97,18 +97,27 @@ urlpatterns = [
         ),
 
     path(
-        'formularioCosto/<int:id>',
-        view=formularioAgendaCosto, 
-        name='formulario-Agenda-Costo'
-        ),
-
-    path(
         'crearCosto/<int:id>',
         view=crearAgendaCosto, 
         name='Agenda-Costo'
         ),
 
+     path(
+        'editarCosto/<int:id>',
+        view=editarAgendaCosto, 
+        name='Editar-Costo'
+        ),    
 
+    path(
+        'verDetalleCosto/<int:id>',
+        view=verDetalleCosto, 
+        name='verDetalle-Costo'
+        ),
 
+    path(
+        'crearFecha/<int:id>',
+        view=crearAgendaFecha, 
+        name='Agenda-Fecha'
+        ),
 
 ]
