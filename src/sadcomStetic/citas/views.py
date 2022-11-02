@@ -11,7 +11,22 @@ def listarCita(request):
     contexto={"citas":citas}
     return render(request,"Citas/listarCitas.html",contexto)
 
-def crearCita(request):
+def verificarDocumento(request):
+    clienteDocumento= request.POST.get('documento')
+    existe=Clientes.objects.filter(documento=clienteDocumento).exists()
+    idCliente = Clientes.objects.filter(documento = clienteDocumento).values_list('idCliente', flat=True).first()
+    
+    if existe: 
+        return redirect('crear-Citas',idCliente)
+
+    else:
+        error="El documento que ingreso no está registrado en el sistema"
+        contexto={"error":error}
+        return render(request,'Citas/verificarDocumento.html',contexto)
+    
+    
+
+def crearCita(request,id):
     if request.method=='POST':
         formulario_citas=FormularioCitas(request.POST)
         if formulario_citas.is_valid():
@@ -19,20 +34,11 @@ def crearCita(request):
             return redirect('/listarCitas/')
     else: 
         formulario_citas=FormularioCitas()
-        contexto={'formulario_citas':formulario_citas}
-        return render(request,'Citas/crearCitas.html',contexto)
+        
+    contexto={'formulario_citas':formulario_citas,'idCliente':id}
+    return render(request,'Citas/crearCitas.html',contexto)
     
-    clienteDocumento= request.POST.get('documento')
-    existe=Clientes.objects.filter(documento=clienteDocumento).exists()
-    idCliente = Clientes.objects.filter(documento = clienteDocumento).values_list('idCliente', flat=True).first()
-    if existe==False:
-        error="El documento que ingreso no está registrado en el sistema"
-        contexto={'formulario_citas':formulario_citas,"error":error}
-        return render(request,'Citas/crearCitas.html',contexto)
-    elif existe: 
-        mensaje="el documento está registrado"
-        contexto={'formulario_citas':formulario_citas,'idCliente':idCliente,'mensaje':mensaje}
-        return render(request,'Citas/crearCitas.html',contexto)
+    
     
 def editarCita(request,id):
     citas=Citas.objects.get(idCita=id)
@@ -53,7 +59,7 @@ def eliminarCita(request,id):
 
 def verDetalleCita(request, id):
     cliente=Clientes.objects.filter(idCliente=id).first()
-    agendaCosto=AgendaCosto.objects.filter()
+    agendaCosto=AgendaCosto.objects.filter(idCliente=id)
     contexto={"agendaCosto":agendaCosto,"cliente":cliente}
     return render(request,"Citas/verDetalleCita.html",contexto)
 
@@ -79,12 +85,12 @@ def editarAgendaCosto(request,id):
         if formulario_agenda_costo.is_valid():
             formulario_agenda_costo.save()
             return redirect('verDetalle-Cita', id)
-    contexto={'formulario_agenda_costo':formulario_agenda_costo,'idCliente':id}
-    return render(request,'Citas/crearCosto.html',contexto)
+    contexto={'formulario_agenda_costo':formulario_agenda_costo}
+    return render(request,'Citas/editarCosto.html',contexto)
 
 def verDetalleCosto(request, id):
     agendaCosto=AgendaCosto.objects.filter(idAgendaCosto=id).first()
-    agendaFecha=AgendaFecha.objects.filter()
+    agendaFecha=AgendaFecha.objects.filter(idAgendaCosto=id)
     contexto={"agendaFecha":agendaFecha,"agendaCosto":agendaCosto}
     return render(request,"Citas/verDetalleCosto.html",contexto)
 
@@ -103,6 +109,7 @@ def crearAgendaFecha(request, id):
         clienteCosto=listar.costo
         clienteAbono=listar.abono
 
+
         if clienteAbono<clienteCosto:
             estado="Por pagar"
             contexto={'estado':estado,'formulario_agenda_fecha':formulario_agenda_fecha,'idAgendaCosto':id}
@@ -111,10 +118,32 @@ def crearAgendaFecha(request, id):
             estado="Pagado"
             contexto={'estado':estado,'formulario_agenda_fecha':formulario_agenda_fecha,'idAgendaCosto':id}
             return render(request,'Citas/crearFecha.html',contexto)
-        elif clienteAbono>clienteCosto:
-            mensaje="La cantidad que esta abonando es mayor alo que debe pagar"
-            contexto={'mensaje':mensaje,'formulario_agenda_fecha':formulario_agenda_fecha,'idAgendaCosto':id}
+        else :
+            estado="Debe"
+            contexto={'estado':estado,'formulario_agenda_fecha':formulario_agenda_fecha,'idAgendaCosto':id}
             return render(request,'Citas/crearFecha.html',contexto)
+
+        
+    contexto={'formulario_agenda_fecha':formulario_agenda_fecha}
+    return render(request,'Citas/crearFecha.html',contexto)
+        # agendafecha=AgendaFecha.objects.filter(idAgendaCosto=id)
+
+        # contador=0
+        # while contador<agendafecha:
+        #     contador+=1
+
+        
+        # if contador==clienteSesiones:
+        #     error='El número de sesiones es superior'
+        #     contexto={'error':error}
+        #     render(request,'Citas/crearFecha.html',contexto)
+
+
+            
+
+
+    
+
         
         
     

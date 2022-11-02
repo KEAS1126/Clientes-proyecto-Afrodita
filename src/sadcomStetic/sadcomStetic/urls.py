@@ -72,8 +72,14 @@ urlpatterns = [
         name='listar-Citas'
         ),
 
+     path(
+        'verficarDocumento/',
+        view=verificarDocumento, 
+        name='verificar-Documento'
+        ),   
+
     path(
-        'crearCitas/',
+        'crearCitas/<int:id>',
         view=crearCita, 
         name='crear-Citas'
         ),

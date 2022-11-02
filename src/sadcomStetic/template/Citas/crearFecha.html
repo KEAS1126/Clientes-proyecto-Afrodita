@@ -9,10 +9,11 @@
 <body>
     <form method="POST">{% csrf_token %}
         <input type="text" name="idAgendaCosto" value="{{idAgendaCosto}}">
-        <input type="text" name="estado" value="{{estado}}">
+        <input type="text" name="estado" value="{{estado}}" >
         <label for="">Fecha</label>
         {{formulario_agenda_fecha.fechaAgenda}}
         <button>Guardar</button>
     </form>
+    
 </body>
 </html>

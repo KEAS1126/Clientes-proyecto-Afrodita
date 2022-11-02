@@ -7,16 +7,14 @@
     <title>Crear citas</title>
 </head>
 <body>
-    <form method="POST">{% csrf_token %}
-        <label for="">Documento</label>
-        <input type="text" name="documento">
-        <p style="color: red;">{{error}}</p> <p style="color: green;">{{mensaje}}</p>
-        <button>Verificar</button>
-    </form>
+   
     <form method="POST">{% csrf_token %}
         <input type="text" hidden  name="idCliente" value="{{idCliente}}">
         <label for="">Fecha cita</label>
         {{formulario_citas.fechaCita}}
+        {% for error in formulario_citas.fechaCita.errors %}
+         <p style="color:red"> {{error}}</p>
+        {% endfor %}
         <label for="">Estado</label>
         {{formulario_citas.estado}}
         <button>Guardar</button>
